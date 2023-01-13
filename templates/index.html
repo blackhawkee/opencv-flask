@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+<!-- 
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous"> -->
+        <!-- <link rel="stylesheet" href="/static/stylesheets/style.css"> -->
+
+
+        <title>Shoplifting Detection Demo</title>
+    </head>
+    <body>
+        <h2>Shoplifting Detection Stream</h2>
+        <div>
+            <input type="text" name="yturl" id="yturl" size="75"
+                placeholder="https://www.youtube.com/watch?v=38hnIitudak&ab_channel=ViralFACTORY">
+            <button type="button" onclick="imageShow()" class="button">Detect</button>
+            <br>
+        </div>
+
+        <div>
+            <img width="75%" height="50%" alt="SDStream" id="image"
+                hidden="true">
+        </div>
+
+        <script>
+            function imageShow() {
+                var image = document.getElementById("image")
+                var yt_url = document.getElementById("yturl").value
+                if (!yt_url) {
+                    yt_url = "https://www.youtube.com/watch?v=38hnIitudak&ab_channel=ViralFACTORY"
+                }
+                image.src = "{{ url_for('video_feed', param_url='param_val') }}".replace("param_val", yt_url);
+                image.hidden = false
+            }
+        </script>
+    </body>
+</html>

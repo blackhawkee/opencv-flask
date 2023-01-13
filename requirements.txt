@@ -1,0 +1,13 @@
+flask==2.2.2
+tensorflow==2.11.0
+#tensorflow-gpu==2.10.1
+cv==1.0.0
+numpy==1.24.1
+keras==2.11.0
+argparse3==0.0.0
+imutils==0.5.4
+opencv-python==4.7.0.68
+Pillow==9.4.0
+pafy==0.5.5
+youtube-dl==2021.12.17
+beepy==1.0.7

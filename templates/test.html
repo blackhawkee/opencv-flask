@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Live Streaming with OpenCV</title>
+</head>
+<body>
+  <h1>Live Streaming with OpenCV</h1>
+  <video id="videoElement" width="640" height="480" autoplay></video>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/opencv/4.5.0/opencv.min.js"></script>
+  <script>
+    // Initialize video element and canvas element
+    let videoElement = document.getElementById("videoElement");
+    let canvasElement = document.createElement("canvas");
+    let context = canvasElement.getContext("2d");
+
+    // Set up video streaming
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then(function(stream) {
+        videoElement.srcObject = stream;
+      });
+
+    // Set up canvas for displaying video frames
+    videoElement.addEventListener("play", function() {
+      canvasElement.width = videoElement.videoWidth;
+      canvasElement.height = videoElement.videoHeight;
+      drawFrame();
+    });
+
+    function drawFrame() {
+      // Draw current video frame to canvas
+      context.drawImage(videoElement, 0, 0);
+      // Process frame with OpenCV
+      let imageData = context.getImageData(0, 0, canvasElement.width, canvasElement.height);
+      cv.imshow('canvasOutput', imageData);
+      // Loop
+      requestAnimationFrame(drawFrame);
+    }
+  </script>
+</body>
+</html>
